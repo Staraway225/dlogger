@@ -13,13 +13,14 @@ module DLogger
       end
 
     def initialize(
+      host: "localhost",
       port: "22500",
       logdev: $stdout,
       level: Logger::INFO,
       progname: nil,
       formatter: DEFAULT_REMOTE_FORMATTER
     )
-      @uri = "druby://localhost:#{port}"
+      @uri = "druby://#{host}:#{port}"
       @internal_logger =
         Logger.new($stdout, progname: "DLogger", formatter: DEFAULT_INTERNAL_FORMATTER)
       @remote_logger = Logger.new(logdev, level: level, progname: progname, formatter: formatter)
